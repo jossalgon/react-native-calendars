@@ -52,6 +52,7 @@ export default class Timeline extends Component<TimelineProps, State> {
     end: PropTypes.number,
     eventTapped: PropTypes.func, // TODO: remove after deprecation
     onEventPress: PropTypes.func,
+    onEventLongPress: PropTypes.func,
     format24h: PropTypes.bool,
     events: PropTypes.arrayOf(
       PropTypes.shape({
@@ -165,6 +166,10 @@ export default class Timeline extends Component<TimelineProps, State> {
     }
   }
 
+  _onEventLongPress(event: Event) {
+    _.invoke(this.props, 'onEventLongPress', event);
+  }
+
   _renderEvents() {
     const {packedEvents} = this.state;
     let events = packedEvents.map((event: any, i: number) => {
@@ -185,6 +190,7 @@ export default class Timeline extends Component<TimelineProps, State> {
         <TouchableOpacity
           activeOpacity={0.9}
           onPress={() => this._onEventPress(this.props.events[event.index])}
+          onLongPress={() => this._onEventLongPress(this.props.events[event.index])}
           key={i}
           style={[this.style.event, style]}
         >
