@@ -188,7 +188,7 @@ export default class Timeline extends Component<TimelineProps, State> {
 
       return (
         <TouchableOpacity
-          activeOpacity={0.9}
+          activeOpacity={0.2}
           onPress={() => this._onEventPress(this.props.events[event.index])}
           onLongPress={() => this._onEventLongPress(this.props.events[event.index])}
           key={i}
